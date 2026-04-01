@@ -1,4 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-console.log("hi");
+import { WebSocketServer } from 'ws';
+const wss = new WebSocketServer({ port: 8080 });
+wss.on("connection", function (socket) {
+    console.log("user connected");
+    setInterval(() => {
+        socket.send("The current price of solana is " + Math.random());
+    }, 1000);
+});
 //# sourceMappingURL=index.js.map
