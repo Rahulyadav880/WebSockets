@@ -8,8 +8,12 @@ wss.on("connection", function (socket) {
     //until we have seen, how the server is sending the messages. Now, we will see that 
     // how the client can send the message to the server
     socket.on("message", (e) => {
-        if (e.toString()) { //if server gets the message "ping"
-            socket.send(e.toString()); //then it eill send "pong"
+        if (e.toString() === "ping") { //if server gets the message "ping"
+            socket.send("pong"); //then it will send "pong"
+        }
+        if (e.toString()) { //if server gets the any message(string)
+            socket.send(e.toString()); //then it will send the exact string
+            //which the client has sent to the server.
         }
     });
 });
